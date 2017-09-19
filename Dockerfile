@@ -78,4 +78,13 @@ RUN apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
     apk del build-dependencies && \
     rm -rf /tmp/*
 
+# Add MCP self-signed CA public certificate to TrustStore
+    
+ADD mcp_root_ca.pem /tmp
+
+RUN set -xe; \ 
+    keytool -keystore /usr/lib/jvm/default-jvm/jre/lib/security/cacerts \
+        -importcert -alias mcp-root-ca -file /tmp/mcp_root_ca.pem \
+        -storepass changeit -noprompt
+
 #ENV LANG=C.UTF-8
