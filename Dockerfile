@@ -1,9 +1,9 @@
 FROM alpine:3.6
 
 ENV JAVA_VERSION=8 \
-    JAVA_UPDATE=144 \
-    JAVA_BUILD=01 \
-    JAVA_PATH=090f390dda5b47b9b721c7dfaa008135 \
+    JAVA_UPDATE=151 \
+    JAVA_BUILD=12 \
+    JAVA_PATH=e758a0de34e24606bca991d704f6dcbf \
     JAVA_HOME="/usr/lib/jvm/default-jvm" \
     LANG=C.UTF-8
 
@@ -26,8 +26,6 @@ RUN apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
     \
     rm "/root/.wget-hsts" && \
     apk del .build-dependencies && \
-    apk add --update && \
-    apk add --no-cache gcc musl-dev && \
     apk add --no-cache --virtual=build-dependencies wget ca-certificates unzip && \
     cd "/tmp" && \
     wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
